@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Plus, User, ChevronDown, Menu, X, CalendarDays, MapPin, Users, Image, Check, FileText, Mail, Twitter, Github, Linkedin, Instagram, Ticket, UserCheck } from 'lucide-react';
+import { Calendar, Plus, User, ChevronDown, Menu, X, CalendarDays, MapPin, Users, Check, FileText, Mail, Twitter, Github, Linkedin, Instagram, Ticket, UserCheck } from 'lucide-react';
+import Image from 'next/image';
 
 // Add these animation variants at the top of your file
 const fadeInUp = {
@@ -1640,10 +1641,15 @@ export default function GatherApp() {
                     >
                       {mockEventData?.coverImage ? (
                         <>
-                          <img 
-                            src={mockEventData.coverImage}
+                            src={mockEventData.coverImage || '/placeholder.jpg'}
                             alt="Event cover"
-                            className="absolute inset-0 w-full h-full object-cover"
+                            layout="fill"
+                            objectFit="cover"
+                            src={mockEventData.coverImage || '/placeholder.jpg'}
+                            alt="Event cover"
+                            layout="fill"
+                            objectFit="cover"
+                            className="absolute inset-0"
                           />
                           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <p className="text-white text-sm">Click to change image</p>
@@ -2115,7 +2121,7 @@ export default function GatherApp() {
                         exit={{ opacity: 0, y: -20 }}
                         className="absolute top-4 right-4 bg-purple-600/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white"
                       >
-                        You're going! 🎉
+                        You are going! 🎉
                       </motion.div>
                     )}
                   </AnimatePresence>
