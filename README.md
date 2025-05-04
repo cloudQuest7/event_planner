@@ -1,8 +1,5 @@
 # Gatherion - Modern Event Planning Platform 🎉
-<div align="center">
-  <img src="./public/images/gatherion.jpg" alt="Gatherion UI" width="600"/>
-  <p><em>Gatherion's modern dark theme interface</em></p>
-</div>
+![Landing Page](./Images/gatherion.png)
 An interactive event planning platform built with Next.js, Framer Motion, and Tailwind CSS, featuring a stunning dark theme UI and fluid animations.
 
 ## ✨ Features
