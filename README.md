@@ -1,5 +1,5 @@
 # Gatherion - Modern Event Planning Platform 🎉
-![Gatherion](./images/gatherion.jpg)
+![Gatherion](./image/gatherion.jpg)
 An interactive event planning platform built with Next.js, Framer Motion, and Tailwind CSS, featuring a stunning dark theme UI and fluid animations.
 
 ## ✨ Features
