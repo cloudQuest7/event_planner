@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Plus, User, ChevronDown, Menu, X, CalendarDays, MapPin, Users, Image,  Check, FileText, Mail, Twitter, Github, Linkedin, Instagram, Ticket, UserCheck } from 'lucide-react';
+import { Calendar, Plus, User, ChevronDown, Menu, X, CalendarDays, MapPin, Users, Image, Check, FileText, Mail, Twitter, Github, Linkedin, Instagram, Ticket, UserCheck } from 'lucide-react';
 
 // Add these animation variants at the top of your file
 const fadeInUp = {
@@ -237,21 +237,7 @@ export default function GatherApp() {
     { id: 'discover', label: 'Discover Events', icon: <Calendar className="w-4 h-4 mr-2" /> },
   ];
 
-  interface Star {
-    id: number;
-    size: number;
-    x: number;
-    y: number;
-    opacity: number;
-    duration: number;
-    delay: number;
-  }
-
-  interface NavItem {
-    id: string;
-    label: string;
-    icon: JSX.Element;
-  }
+  
 
   interface Event {
     id: string;
@@ -281,6 +267,28 @@ export default function GatherApp() {
     avatar: string;
     email: string;
   }
+
+  // Add proper typing for the randomuser.me API response
+  interface RandomUserResponse {
+    name: {
+      first: string;
+      last: string;
+    };
+    picture: {
+      medium: string;
+    };
+    email: string;
+  }
+
+  const fetchRandomUsers = async (count: number): Promise<UserProfile[]> => {
+    const response = await fetch(`https://randomuser.me/api/?results=${count}&inc=name,picture,email`);
+    const data = await response.json();
+    return data.results.map((user: RandomUserResponse) => ({
+      name: `${user.name.first} ${user.name.last}`,
+      avatar: user.picture.medium,
+      email: user.email
+    }));
+  };
 
   const scrollToSection = (id: string): void => {
     setActiveSection(id);
@@ -381,16 +389,6 @@ export default function GatherApp() {
         );
       }, 3000);
     }
-  };
-
-  const fetchRandomUsers = async (count: number): Promise<UserProfile[]> => {
-    const response = await fetch(`https://randomuser.me/api/?results=${count}&inc=name,picture,email`);
-    const data = await response.json();
-    return data.results.map((user: any) => ({
-      name: `${user.name.first} ${user.name.last}`,
-      avatar: user.picture.medium,
-      email: user.email
-    }));
   };
 
   const navbarClasses = `fixed top-0 left-0 w-full transition-all duration-300 z-50 ${
@@ -521,6 +519,7 @@ export default function GatherApp() {
             <div className="flex flex-wrap gap-2">
               {tintColors.map((color) => (
                 <button
+                  title="Menu Button"
                   type="button" // Prevent form submission on click
                   key={color}
                   onClick={() => setLocalCalendarData(prev => ({ 
@@ -1127,7 +1126,17 @@ export default function GatherApp() {
                 className="pt-8 flex items-center space-x-8"
               >
                 <motion.div 
-                  variants={floatingAnimation}
+                  variants={{
+                    animate: {
+                      y: [0, -10, 0],
+                      transition: {
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "loop", // Use a valid value like "loop"
+                        ease: "easeInOut",
+                      },
+                    },
+                  }}
                   animate="animate"
                   className="flex -space-x-4"
                 >
@@ -1433,16 +1442,16 @@ export default function GatherApp() {
                   >
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Event Name*
+                      Event Name*
                       </label>
                       <input
-                        type="text"
-                        name="title"
-                        value={eventData.title}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 bg-gray-700/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        placeholder="Enter event name"
-                        required
+                      type="text"
+                      name="title"
+                      value={eventData.title}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 bg-gray-700/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      placeholder="Enter event name"
+                      required
                       />
                     </div>
 
@@ -2144,9 +2153,7 @@ export default function GatherApp() {
             onClose={() => {
               setShowRsvpModal(false);
               setSelectedEvent(null);
-              setRsvpStatus(null);
-              setGuestCount(1);
-            }} 
+                          }} 
           />
         )}
       </AnimatePresence>

@@ -237,21 +237,7 @@ export default function GatherApp() {
     { id: 'discover', label: 'Discover Events', icon: <Calendar className="w-4 h-4 mr-2" /> },
   ];
 
-  interface Star {
-    id: number;
-    size: number;
-    x: number;
-    y: number;
-    opacity: number;
-    duration: number;
-    delay: number;
-  }
-
-  interface NavItem {
-    id: string;
-    label: string;
-    icon: JSX.Element;
-  }
+ 
 
   interface Event {
     id: string;
