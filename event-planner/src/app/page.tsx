@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Plus, User, ChevronDown, Menu, X, CalendarDays, Clock, MapPin, Users, Image, ArrowRight, Check, Link, Save, FileText, Mail, Twitter, Github, Linkedin, Instagram, Layout, Globe, Ticket, UserCheck } from 'lucide-react';
+import { Calendar, Plus, User, ChevronDown, Menu, X, CalendarDays, MapPin, Users, Image,  Check, FileText, Mail, Twitter, Github, Linkedin, Instagram, Ticket, UserCheck } from 'lucide-react';
 
 // Add these animation variants at the top of your file
 const fadeInUp = {
