@@ -10,17 +10,6 @@ const fadeInUp = {
   transition: { duration: 0.5 }
 };
 
-const floatingAnimation = {
-  animate: {
-    y: [-10, 10],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut"
-    }
-  }
-};
 
 // Add this before the GatherApp function
 const PopupModal = ({ 
@@ -114,13 +103,10 @@ export default function GatherApp() {
   const [eventAttendees, setEventAttendees] = useState<{[key: string]: UserProfile[]}>({});
   const [showRsvpModal, setShowRsvpModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [rsvpStatus, setRsvpStatus] = useState<'going' | 'maybe' | 'not-going' | null>(null);
-  const [guestCount, setGuestCount] = useState(1);
 
   // Add these state variables
   const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
-  const [eventDescription, setEventDescription] = useState('');
 
   // Add these state variables for mock event
   const [mockEventData, setMockEventData] = useState({
@@ -142,15 +128,11 @@ export default function GatherApp() {
   const [locationInput, setLocationInput] = useState('');
 
   // Add capacity modal state
-  const [isCapacityModalOpen, setIsCapacityModalOpen] = useState(false);
+  const [ setIsCapacityModalOpen] = useState(false);
 
   // Add this state for calendar modal
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
-  const [calendarData, setCalendarData] = useState({
-    name: '',
-    description: '',
-    tintColor: '#00C853' // default green color
-  });
+  
 
   // Add the themes array near your other constants
   const themes = [
@@ -942,9 +924,9 @@ export default function GatherApp() {
                 <span className="absolute inset-0 bg-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 
                 {isOpen ? (
-                  <X className="block h-6 w-6 relative z-10 group-hover:text-purple-300 transition-colors duration-300 group-hover:rotate-90 transition-transform" />
+                  <X className="block h-6 w-6 relative z-10 group-hover:text-purple-300 transition-all duration-300 group-hover:rotate-90" />
                 ) : (
-                  <Menu className="block h-6 w-6 relative z-10 group-hover:text-purple-300 transition-colors duration-300 group-hover:scale-110 transition-transform" />
+                  <Menu className="block h-6 w-6 relative z-10 group-hover:text-purple-300 transition-transform duration-300 group-hover:scale-110" />
                 )}
               </button>
             </div>
