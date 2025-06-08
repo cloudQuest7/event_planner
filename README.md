@@ -14,8 +14,7 @@ An interactive event planning platform built with Next.js, Framer Motion, and Ta
   - Attendee tracking
   - Event themes and customization
   - Location management
-  - Capacity controls
-  - Seamless integration
+  - Capacity control
 
 ## 🚀 Getting Started
 
